@@ -7,8 +7,12 @@
   "engines": {
     "vscode": "^1.85.0"
   },
-  "categories": ["Other"],
-  "activationEvents": ["onStartupFinished"],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -59,7 +63,11 @@
         "governedAI.agentLabel": {
           "type": "string",
           "default": "Builder",
-          "enum": ["Architect", "Builder", "Tester"],
+          "enum": [
+            "Architect",
+            "Builder",
+            "Tester"
+          ],
           "description": "Label for this agent session (used in trace ledger)."
         }
       }
@@ -77,6 +85,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/js-yaml": "^4.0.9",
     "@types/minimatch": "^5.1.2",
     "@types/node": "^20.0.0",
@@ -92,6 +101,8 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "testMatch": ["**/tests/**/*.test.ts"]
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ]
   }
 }
