@@ -150,8 +150,8 @@ export interface ASTNodeRef {
   file: string;
   nodeType: string;               // "FunctionDeclaration", "ClassDeclaration" etc.
   name: string;
-  startLine: number;
-  endLine: number;
+  start_line: number;
+  end_line: number;
 }
 
 // ── Hook Engine Config ────────────────────────────────────────

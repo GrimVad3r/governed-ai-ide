@@ -26,13 +26,13 @@ export class ContentHasher {
    */
   static hashLines(
     fileContents: string,
-    startLine: number,
-    endLine: number
+    start_line: number,
+    end_line: number
   ): string {
     const lines = fileContents.split("\n");
     // Clamp to valid range
-    const start = Math.max(0, startLine - 1);
-    const end = Math.min(lines.length, endLine);
+    const start = Math.max(0, start_line - 1);
+    const end = Math.min(lines.length, end_line);
     const block = lines.slice(start, end).join("\n");
     return ContentHasher.hash(block);
   }
@@ -65,12 +65,12 @@ export class ContentHasher {
   static diffLineRanges(
     oldContent: string,
     newContent: string
-  ): Array<{ startLine: number; endLine: number; content_hash: string }> {
+  ): Array<{ start_line: number; end_line: number; content_hash: string }> {
     const oldLines = oldContent.split("\n");
     const newLines = newContent.split("\n");
     const ranges: Array<{
-      startLine: number;
-      endLine: number;
+      start_line: number;
+      end_line: number;
       content_hash: string;
     }> = [];
 
@@ -91,8 +91,8 @@ export class ContentHasher {
         // Close the current diff block
         const block = newLines.slice(diffStart, i).join("\n");
         ranges.push({
-          startLine: diffStart + 1,
-          endLine: i,
+          start_line: diffStart + 1,
+          end_line: i,
           content_hash: ContentHasher.hash(block),
         });
         inDiff = false;
@@ -103,8 +103,8 @@ export class ContentHasher {
     if (inDiff) {
       const block = newLines.slice(diffStart).join("\n");
       ranges.push({
-        startLine: diffStart + 1,
-        endLine: newLines.length,
+        start_line: diffStart + 1,
+        end_line: newLines.length,
         content_hash: ContentHasher.hash(block),
       });
     }
@@ -112,8 +112,8 @@ export class ContentHasher {
     // If nothing changed, hash entire new file as single range
     if (ranges.length === 0) {
       ranges.push({
-        startLine: 1,
-        endLine: newLines.length,
+        start_line: 1,
+        end_line: newLines.length,
         content_hash: ContentHasher.hashFile(newContent),
       });
     }

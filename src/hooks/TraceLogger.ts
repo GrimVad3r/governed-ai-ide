@@ -59,8 +59,8 @@ export class TraceLogger {
       ? ContentHasher.diffLineRanges(oldContent, newContent)
       : [
           {
-            startLine: 1,
-            endLine: newContent.split("\n").length,
+            start_line: 1,
+            end_line: newContent.split("\n").length,
             content_hash: ContentHasher.hashFile(newContent),
           },
         ];
